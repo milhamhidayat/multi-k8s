@@ -42,3 +42,15 @@ Volume is tied to the pod, if a pod is deleted and kubernetes volume will be del
 - outside pod
 - don't have tight integration with pod
 - if the pod crash or deleted, it will still persist
+- There are 2 type :
+    
+    * statically privisioned persistent volume : created at beginning
+    * dynamically privisoned persistent volume : not created at beginning, will get the config and create it
+
+## Persistent Volume Claim
+- Config file to access persistent volume
+
+## Access mode
+- ReadWriteOnce : can be used by a single node
+- ReadOnlyMany : multiple nodes can read from this
+- ReadWriteMany : can be read and written to by many nodes 
