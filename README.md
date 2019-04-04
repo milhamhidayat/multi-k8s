@@ -63,3 +63,9 @@ Volume is tied to the pod, if a pod is deleted and kubernetes volume will be del
 ```sh
 kubectl get storageclass
 ```
+
+- To see all persistent volume
+
+```sh
+kubectl get pv
+```
