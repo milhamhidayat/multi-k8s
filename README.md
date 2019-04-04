@@ -91,3 +91,7 @@ Check:
 ```sh
 kubectl get secrets
 ```
+
+## LoadBalancer
+
+service points to external load balancer that are not in your kubernetes cluster. Ex: GCP, AWS
