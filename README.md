@@ -69,3 +69,25 @@ kubectl get storageclass
 ```sh
 kubectl get pv
 ```
+
+## Secret
+stores a piece of information in the cluster, such as a database password. Use imperative command, because if you use declarative you need to create config for the secret password and anyone who have access able to see the file
+
+```sh
+kubectl create secret <generic> <secret_name> --from-literal key=value
+```
+
+generic : type of secret, generic, tls or docker registry
+secret_name: name of secret, reference in pod config
+--from-literal : add secret into this command, as ooposed from file
+key=value : key value pair of the secret information
+
+Example : 
+```sh
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=yourpassword
+```
+
+Check:
+```sh
+kubectl get secrets
+```
