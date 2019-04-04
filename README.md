@@ -53,4 +53,13 @@ Volume is tied to the pod, if a pod is deleted and kubernetes volume will be del
 ## Access mode
 - ReadWriteOnce : can be used by a single node
 - ReadOnlyMany : multiple nodes can read from this
-- ReadWriteMany : can be read and written to by many nodes 
+- ReadWriteMany : can be read and written to by many nodes
+
+## Where does kubernetes allocate persistent volume
+- Kubernetes will make a slice of your hard drive to create persistent volume in local
+- In cloud, it will user cloud storage service
+- To see the config
+
+```sh
+kubectl get storageclass
+```
