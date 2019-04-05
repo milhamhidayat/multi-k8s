@@ -116,3 +116,9 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 ```sh
 minikube addons enable ingress
 ```
+
+## Dashboard
+To check the dashboard, use
+```sh
+minikube dashboard
+```
