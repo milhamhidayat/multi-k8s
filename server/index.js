@@ -16,14 +16,11 @@ const pgClient = new Pool({
     database: keys.pgDatabase,
     password: keys.pgPassword,
     port: keys.pgPort,
-    max: 10,
-    idleTimeoutMillis: 15000,
-    connectionTimeoutMillis: 2000,
 })
 pgClient.on('error', () => console.log('Lost PG Connnection'))
 
 pgClient.query("CREATE TABLE IF NOT EXISTS values (number INT)")
-    .catch(err => console.log(err))
+    .catch(err => console.log(`failed to get date from postgres : ${err}`))
 
 // redic client setup
 const redis = require('redis')
@@ -35,9 +32,6 @@ const redisClient = redis.createClient({
 const redisPublisher = redisClient.duplicate()
 
 // express route handlers
-app.get('/', (req, res) => {
-    res.send("hi")
-})
 
 app.get('/values/all', async (req, res) => {
     const values = await pgClient.query('SELECT * from values')
@@ -62,6 +56,10 @@ app.post('/values', (req, res) => {
     res.send({
         working: true
     })
+})
+
+app.get('/', (req, res) => {
+    res.send("hi")
 })
 
 app.listen(5000, () => {
