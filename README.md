@@ -94,4 +94,11 @@ kubectl get secrets
 
 ## LoadBalancer
 
-service points to external load balancer that are not in your kubernetes cluster. Ex: GCP, AWS
+- service points to external load balancer that are not in your kubernetes cluster. Ex: GCP, AWS
+- load balancer only give you access to one set of pods
+- Each service exposed with LoadBalancer will get its own IP Address, and have to pay per expose service.
+
+## Ingress
+- act like a "smart router"
+- set a rules to pass to a service
+- a way to route traffic, by specifying request path, request domain, and target kubernetes service
