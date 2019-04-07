@@ -16,3 +16,8 @@ before_install:
 script:
   - docker run photon628/react-test npm test -- --coverage
   
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
