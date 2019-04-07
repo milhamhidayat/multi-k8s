@@ -122,3 +122,78 @@ To check the dashboard, use
 ```sh
 minikube dashboard
 ```
+
+## Deployment to gcloud
+Open google cloud console
+1. Set google cloud project
+
+```sh
+gcloud config set project <project id> 
+```
+
+2. Set timezone
+
+```sh
+gcloud config set compute/zone <timezone>
+```
+
+```sh
+gcloud config set compute/zone asia-southeast1-a 
+```
+
+3. Get credential from kubernetes cluster
+
+
+```sh
+gcloud container clusters get-credentials <cluster name>
+```
+
+```sh
+gcloud container clusters get-credentials multi-cluster
+```
+
+4. Create secret for pg password
+
+```sh
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=your_password
+```
+
+5. Install helm
+
+```sh
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+6. Create service account, to handle rbac
+
+```sh
+kubectl create serviceaccount --namespace <namespace> tiller
+```
+
+```sh
+kubectl create serviceaccount --namespace kube-system tiller
+```
+
+7. Create cluster role binding
+
+```sh
+kubectl create clusterrolebinding <cluster role name> --clusterrole==<cluster role> --serviceaccount==<service account>:tiller
+```
+
+```sh
+kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+```
+
+8. Initialize helm
+
+```sh
+helm init --service-account tiller --upgrade
+```
+
+9. Install ingress
+
+```sh
+helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+``` 

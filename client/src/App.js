@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>Fib Calculator v7 in KUBERNETES</h1>
+          <h1>Fib Calculator KUBERNETES LIVE</h1>
           <div>
             <Link to="/">Home</Link>
             <Link to="/otherpage">Other Page</Link>

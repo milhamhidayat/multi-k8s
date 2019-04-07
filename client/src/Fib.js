@@ -16,6 +16,9 @@ class Fib extends Component {
     async fetchValues() {
         try {
             const values = await axios.get('/api/values/current');
+            console.log("===fetch values===")
+            console.log(values)
+            console.log("======")
             this.setState({ values: values.data });
         } catch (err) {
             console.log("========")
@@ -27,7 +30,7 @@ class Fib extends Component {
     async fetchIndexes() {
         try {
             const seenIndexes = await axios.get('/api/values/all');
-            console.log("========")
+            console.log("====fetch indexes====")
             console.log(seenIndexes)
             console.log("========")
             this.setState({
@@ -59,10 +62,6 @@ class Fib extends Component {
 
     renderValues() {
         const entries = [];
-
-        if (entries.length === 0) {
-            return entries
-        }
 
         for (let key in this.state.values) {
             entries.push(
