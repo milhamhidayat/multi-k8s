@@ -1,5 +1,5 @@
 apiVersion: certmanager.k8s.io/v1alpha1
-kind: Cerficate
+kind: Certificate
 metadata:
   name: milhamh-k8s--com-tls
 spec:
